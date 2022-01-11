@@ -24,7 +24,7 @@ pts_env <- read_csv(pts_env_csv)
 nrow(pts_env)
 ```
 
-```{r}
+```{r, warning = FALSE}
 GGally::ggpairs(
   select(pts_env, -ID),
   aes(color = factor(present)))
