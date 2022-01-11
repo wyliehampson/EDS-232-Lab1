@@ -1,0 +1,25 @@
+[general]
+creator=R package 'raster'
+created=2022-01-11 21:19:44
+[georeference]
+nrows=390
+ncols=1233
+xmin=-155.583333333333
+ymin=33.75
+xmax=-52.8333333333333
+ymax=66.25
+projection=+proj=longlat +datum=WGS84 +no_defs
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=5
+bandorder=BIL
+minvalue=-89:-17.3999996185303:3.40000009536743:0:5.92999982833862
+maxvalue=4507:23.7999992370605:20.5:369.959991455078:15.3100004196167
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=WC_alt:WC_bio1:WC_bio2:ER_tri:ER_topoWet
