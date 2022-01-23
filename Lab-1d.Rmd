@@ -152,6 +152,7 @@ matrix(
 
 ```{r}
 # add point to ROC plot
+plot(e, 'ROC')
 points(fpr, tpr, pch=23, bg="blue")
 ```
 
