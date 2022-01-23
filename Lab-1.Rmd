@@ -76,6 +76,14 @@ nrow(obs) # number of rows
 mapview::mapview(obs, map.types = "OpenTopoMap")
 ```
 
+**Question 1. How many observations total are in GBIF for your species? (Hint: ?occ)**
+
+*As we can see in the `df` dataframe there are 3797 observations total in GBIF for my species.*
+
+**Question 2. Do you see any odd observations, like marine species on land or vice versa? If so, please see the Data Cleaning and explain what you did to fix or remove these points.**
+
+*Yes, there are some strange observations that are in South America and Africa, when this species should only be seen in North America. So I filtered the dataset by lon and lat so that only oberservations in North America will show up. This leaves us with 3792 observations.*
+
 #### Get Environmetal Data
 
 ##### Presence Points
