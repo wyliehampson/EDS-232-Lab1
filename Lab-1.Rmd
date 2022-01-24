@@ -42,6 +42,13 @@ dir.create(dir_data, showWarnings = F)
 
 #### Get Species Observations
 
+*The Species that I will be looking at is the Glaucomys sabrinus, or the northern flying squirrel.*
+
+```{r out.width="300px", echo = FALSE}
+url <- "https://cff2.earth.com/uploads/2017/01/03144442/Glaucomys-sabrinus-coloratus-750x400.jpg"
+knitr::include_graphics(url)
+```
+
 ```{r, warning = FALSE}
 obs_csv <- file.path(dir_data, "obs.csv")
 obs_geo <- file.path(dir_data, "obs.geojson")
@@ -78,11 +85,11 @@ mapview::mapview(obs, map.types = "OpenTopoMap")
 
 **Question 1. How many observations total are in GBIF for your species? (Hint: ?occ)**
 
-*As we can see in the `df` dataframe there are 3797 observations total in GBIF for my species.*
+*As we can see in the `df` dataframe there are `r nrow(df)` observations total in GBIF for my species.*
 
 **Question 2. Do you see any odd observations, like marine species on land or vice versa? If so, please see the Data Cleaning and explain what you did to fix or remove these points.**
 
-*Yes, there are some strange observations that are in South America and Africa, when this species should only be seen in North America. So I filtered the dataset by lon and lat so that only oberservations in North America will show up. This leaves us with 3792 observations.*
+*Yes, there are some strange observations that are in South America and Africa, when this species should only be seen in North America. So I filtered the dataset by lon and lat so that only oberservations in North America will show up. This leaves us with `r nrow(obs)` observations.*
 
 #### Get Environmetal Data
 
@@ -344,6 +351,10 @@ summary(mdl)
 plot(mdl, scale=0)
 ```
 
+**Question: Which GAM environmental variables, and even range of values, seem to contribute most towards presence (above 0 response) versus absence (below 0 response)?**
+
+*The GAM environmental variables that seem to contribute most towards presence versus absence are WC_alt from about 0 to 300 and lat from about 35 to 40.*
+
 #### Maxent (Maximum Entropy)
 
 ```{r}
@@ -387,6 +398,10 @@ plot(mdl)
 # plot term plots
 response(mdl)
 ```
+
+**Question: Which Maxent environmental variables, and even range of values, seem to contribute most towards presence (closer to 1 response) and how might this differ from the GAM results?**
+
+*The maxent environmental variables that seem to contribute most towards presence are WC_alt between about 100 and 400, and ER_tri between 100 and 300. WC_alt is in both the MAXENT and GAM models, but ER_tri seems to contribute more to presence in the MAXENT model, where as lat seems to contribute more to presence in the GAM model.*
 
 ```{r}
 # predict
@@ -465,6 +480,10 @@ plotcp(mdl)
 mdl$cptable
 ```
 
+**Question: Based on the complexity plot threshold, what size of tree is recommended?**
+
+*Based on the complexity plot threshold, the size of the tree is recommended to be 5.*
+
 ##### Feature Interpretation
 
 ```{r}
@@ -482,6 +501,10 @@ ggplot(mdl_caret)
 ```{r}
 vip(mdl_caret, num_features = 40, bar = FALSE)
 ```
+
+**Question: what are the top 3 most important variables of your model?**
+
+*The top 3 most important variables in my model are lon, ER_topoWet, and WC_bio1.*
 
 ```{r}
 # Construct partial dependence plots
@@ -530,6 +553,10 @@ p2 <- vip::vip(mdl_permutation, bar = FALSE)
 
 gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
+
+**Question: How might variable importance differ between rpart and RandomForest in your model outputs?**
+
+**
 
 ### Lab 1d: Evaluate Models
 
@@ -592,6 +619,10 @@ mdl_maxv <- read_rds(mdl_maxv_rds)
 # plot variable contributions per predictor
 plot(mdl_maxv)
 ```
+
+**Question: Which variables were removed due to multicollinearity and what is the rank of most to least important remaining variables in your model?**
+
+*ER_tri was removed from my model due to multicollinearity. Now the ranks of most important to least important remaining variables is ER_topoWet, WC_bio1, WC_alt, and WC_bio2.*
 
 ```{r}
 # plot term plots
